@@ -81,11 +81,28 @@ cond = Conductor(trade=True)
 
 ## DB設計
 
-```sql
+- trade用: algo2_trade
+- backtest用: algo2_backtest
 
+```bash
+$ brew services list
+$ brew services start postgresql@14
+$ psql postgres;
+#=> CREATE DATABASE algo2_trade
+#=> CREATE DATABASE algo2_backtest
 ```
 
+```bash
+# ファイルからデータベース定義を読み込み
+$ psql -d algo2_backtest -f schema_def.sql -v ON_ERROR_STOP=1
+```
 
+### データベースとの接続
+下記でpostgresqlに接続できれば、接続情報が正しいことが確認できる。
+```bash
+# データベースとの接続確認
+$ psql "postgresql://takuyakinoshita:@localhost:5432/algo2_backtest" 
+```
 
 
 

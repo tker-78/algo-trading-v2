@@ -2,3 +2,5 @@ numpy
 pandas
 requests
 pytest
+sqlalchemy
+psycopg2
