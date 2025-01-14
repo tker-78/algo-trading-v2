@@ -44,3 +44,15 @@ def test_update_candle(setup_database):
     assert candle.open == 100
     assert candle.close == 50
 
+def test_get_candles(setup_database):
+    with session_scope() as session:
+        session.query(UsdJpy1H).delete()
+
+    candle = UsdJpy1H.create(datetime.datetime(2000, 1, 1, 0, 0), 100, 100, 100, 100)
+    candle = UsdJpy1H.create(datetime.datetime(2001, 1, 1, 0, 0), 200, 100, 100, 100)
+    candle = UsdJpy1H.create(datetime.datetime(2002, 1, 1, 0, 0), 300, 100, 100, 100)
+
+    candles = UsdJpy1H.get_candles(100)
+    assert len(candles) == 3
+    assert candles[-1].open == 100
+
