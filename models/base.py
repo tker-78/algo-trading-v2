@@ -1,16 +1,17 @@
 import logging
 import threading
-from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
+from sqlalchemy.orm import DeclarativeBase
 from contextlib import contextmanager
 
 logger = logging.getLogger(__name__)
 
 class Base(DeclarativeBase): pass
 
-engine = create_engine(f'postgresql+psycopg2://takuyakinoshita:@localhost:5432/algo2_backtest', pool_pre_ping=True)
+engine = create_engine(f'postgresql+psycopg2://takuyakinoshita:'
+                       f'@localhost:5432/algo2_backtest', pool_pre_ping=True)
 
 Session = scoped_session(sessionmaker(bind=engine))
 lock = threading.Lock()

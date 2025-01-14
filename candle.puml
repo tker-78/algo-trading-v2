@@ -1,0 +1,13 @@
+@startuml
+class BaseCandleMixin {
+    DateTime time
+    Float open
+    Float high
+    Float low
+    Float close
+}
+@enduml
+
+@startuml
+Alice -> Bob: test
+@enduml
