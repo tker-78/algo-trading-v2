@@ -113,6 +113,51 @@ $ psql -d algo2_backtest -f schema_def.sql -v ON_ERROR_STOP=1
 $ psql "postgresql://takuyakinoshita:@localhost:5432/algo2_backtest" 
 ```
 
+## Candleクラス
+
+Candleクラスは、tickerから値を取得してデータベースに格納する機能を持つ。
+
+必要なメソッドは下記の通り。
+
+- candleを作る。cls.create()
+- candleを更新する。self.update()
+- candleを削除する。self.delete()
+- candleを取り出す。
+  - cls.get_candles_by_limit()
+  - cls.get_candles_between()
+
+
+## APIClient
+
+APIは、GMO, OANDAのどちらも使えるようにインターフェースを共通化する。
+private, publicそれぞれで、下記のメソッドを実装する。
+
+
+### public
+- get_spread()
+
+
+
+### private
+#### GET
+- authorization(): 認証
+- get_balance(): 資産残高を取得
+- get_open_positions(): 現在の建玉を取得
+- get_execution(): 約定情報を取得
+- get_assets(): 現在の資産を取得
+- get_latest_executions(): 最新の約定を取得
+
+#### POST
+- place_buy_order(): 買い注文
+- place_sell_order(): 売り注文
+- close_order(): 建玉を指定して決済
+- close_out(): 全ての建玉を決済(ロスカット用)
+
+
+### Stream
+- Ticker class: streamから値を読み込むオブジェクトを生成
+
+
 
 
 
