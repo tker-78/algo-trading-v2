@@ -1,4 +1,5 @@
 import pytest
+import logging
 from datetime import datetime
 from api.gmo.apiclient import Ticker
 
@@ -44,5 +45,17 @@ def test_truncate_date_time_24h():
     assert ticker.time.day == 1
     assert ticker.time.hour == 0
     assert ticker.time.minute == 0
+
+def test_truncate_date_time_unknown():
+    ticker_time = datetime(2000, 1, 1, 11, 30, 45)
+    ticker = Ticker(ticker_time, 100, 101)
+    assert ticker.truncate_date_time("1000H") is None
+
+def test_truncate_date_time_unknown_log(caplog):
+    ticker_time = datetime(2000, 1, 1, 11, 30, 45)
+    ticker = Ticker(ticker_time, 100, 101)
+    with caplog.at_level(logging.WARNING):
+        ticker.truncate_date_time("1000H")
+        assert "Unknown time duration: 1000H" in caplog.text
 
 

@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 import logging
 import math
@@ -24,7 +25,7 @@ class Ticker(object):
             'ask': self.ask
         }
 
-    def truncate_date_time(self, duration) -> datetime:
+    def truncate_date_time(self, duration) -> Optional[datetime]:
         ticker_time = self.time
         if duration == "5m":
             new_minute = math.floor(ticker_time.minute / 5) * 5
@@ -54,7 +55,8 @@ class Ticker(object):
         elif duration == "24h":
             time_format = '%Y-%m-%d'
         else:
-            time_format = '%Y-%m-%d %H:%M'
+            logger.warning(f'Unknown time duration: {duration}')
+            return
 
         str_date = datetime.strftime(ticker_time, time_format)
         return datetime.strptime(str_date, time_format)
