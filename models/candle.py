@@ -8,8 +8,8 @@ from sqlalchemy import Float
 from sqlalchemy import desc
 from sqlalchemy.exc import IntegrityError
 
-from base import Base
-from base import session_scope
+from .base import Base
+from .base import session_scope
 
 logger = logging.getLogger(__name__)
 

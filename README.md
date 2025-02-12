@@ -113,6 +113,16 @@ $ psql -d algo2_backtest -f schema_def.sql -v ON_ERROR_STOP=1
 $ psql "postgresql://takuyakinoshita:@localhost:5432/algo2_backtest" 
 ```
 
+
+### テーブルの作成
+
+~~`schema_def.sql`を実行する。~~
+
+`base.py`に定義している`init_db()`を実行することでテーブルが作成される。
+`__init__.py`で実行を指示しているので、modelsモジュールが読み込まれる際に実行される。
+
+
+
 ## Candleクラス
 
 Candleクラスは、tickerから値を取得してデータベースに格納する機能を持つ。

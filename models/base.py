@@ -32,3 +32,8 @@ def session_scope():
         raise
     finally:
         lock.release()
+
+def init_db():
+    import models.candle
+    Base.metadata.create_all(bind=engine)
+
