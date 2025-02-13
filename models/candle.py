@@ -11,6 +11,8 @@ from sqlalchemy.exc import IntegrityError
 from .base import Base
 from .base import session_scope
 
+from api.gmo.apiclient import Ticker
+
 logger = logging.getLogger(__name__)
 
 
@@ -76,28 +78,30 @@ class BaseCandle(object):
         }
 
 class UsdJpy1H(BaseCandle, Base):
-    __tablename__ = 'USD_JPY_1H'
+    __tablename__ = 'usd_jpy_1h'
 
 class UsdJpy4H(BaseCandle, Base):
-    __tablename__ = 'USD_JPY_4H'
+    __tablename__ = 'usd_jpy_4h'
 
 class UsdJpy24H(BaseCandle, Base):
-    __tablename__ = 'USD_JPY_24H'
+    __tablename__ = 'usd_jpy_24h'
 
 
 def factory_base_candle(currency, duration):
-    if currency == 'USD_JPY' and duration == '1h':
+    if currency == 'usd_jpy' and duration == '1h':
         return UsdJpy1H
-    elif currency == 'USD_JPY' and duration == '4H':
+    elif currency == 'usd_jpy' and duration == '4h':
         return UsdJpy4H
-    elif currency == 'USD_JPY' and duration == '24H':
+    elif currency == 'usd_jpy' and duration == '24h':
         return UsdJpy24H
     else:
         return None
 
 
-def generate_candle(ticker: ..., currency: str, duration: str) -> bool:
+def generate_candle(ticker: Ticker, currency: str, duration: str) -> bool:
     """
+    これを使うのはtrade実行時のみ。
+    Tickerから取得した値をトレード用データベースにローソク足情報として保存する
     candleを作成したらTrueを返す
     **todo**
     factory_base_candleを使って、動的にローソク足データを作成する

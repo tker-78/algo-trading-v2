@@ -1,7 +1,16 @@
 import argparse
+from datetime import datetime
+from models.dfcandle import DataframeCandle
 
 def backtest():
     print("executing backtest")
+
+    start = datetime(2018, 3,11)
+    end = datetime(2018, 3, 20)
+    df = DataframeCandle()
+    df.set_candles_between(start, end)
+    print(len(df.candles))
+
 
 def trade():
     """

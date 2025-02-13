@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 class Base(DeclarativeBase): pass
 
+
 engine = create_engine(f'postgresql+psycopg2://takuyakinoshita:'
                        f'@localhost:5432/algo2_backtest', pool_pre_ping=True)
 
