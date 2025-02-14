@@ -5,11 +5,11 @@ live-tradeにもbacktestingにも使用する。
 
 - pair
 - candle
-- logs
 - enums
 - dispatcher
 - event
 - helpers
+- logs
 
 ## pair
 
@@ -18,6 +18,16 @@ live-tradeにもbacktestingにも使用する。
 ## candle
 
 candleの生成とdatabaseへの格納
+
+
+## enums
+
+列挙型。
+定数管理のために使う。
+
+constants.pyなどを使うよりもこっちの方が名前空間に閉じ込めやすいのでいいかも。
+
+
 
 
 
