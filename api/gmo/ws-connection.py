@@ -3,7 +3,7 @@ import websocket
 from datetime import datetime
 from apiclient import Ticker
 
-from models.candle import generate_candle
+from models import generate_candle
 
 class Streamer(object):
     websocket.enableTrace(True)

@@ -1,3 +1,3 @@
-from .base import init_db
+from models.core.base import init_db
 
 init_db()
