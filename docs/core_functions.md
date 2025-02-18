@@ -7,10 +7,10 @@ live-tradeにもbacktestingにも使用する。
 - candle
 - dt
 - enums
-- dispatcher
 - event
 - helpers
 - logs
+- dispatcher
 
 ## pair
 
@@ -44,6 +44,21 @@ dt = datetime.now() # datetime.datetime(2025, 2, 15, 20, 1, 55, 816067)
 dt = dt.astimezone(tz.tzlocal()) # datetime.datetime(2025, 2, 15, 20, 1, 55, 816067, tzinfo=tzlocal())
 dt = dt.astimezone(tz.tzutc()) # datetime.datetime(2025, 2, 15, 11, 1, 55, 816067, tzinfo=tzutc())
 ```
+
+## event
+
+eventとは、特定の時間に発生するもの。様々な種類があるが、全て時刻をもつ必要がある。
+
+producerは、event-drivenアーキテクチャの重要な役割を持つ。
+producerがeventを生成する。
+
+
+
+
+
+
+
+
 
 
 
